@@ -1,0 +1,14 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 80%;
+    height: 90%;
+    gap: 3vh;
+}
+
+#cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

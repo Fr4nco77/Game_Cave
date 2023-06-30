@@ -3,9 +3,7 @@ const { getAllVideogames, getById, postDB, deleteGameDB, updateGameDB } = requir
 const getVideoGames = async(req, res) => {
     const { name } = req.query
     try {
-        let games;
-        name ? games = await getAllVideogames(name) : games = await getAllVideogames()
-
+        let games = await getAllVideogames(name);
         res.status(200).json(games);
     } catch (error) {
         res.status(404).json({error: error.message})
@@ -16,8 +14,7 @@ const getVideoGamesById = async(req, res) => {
     const { id } = req.params;
     try {
         const game = await getById(id);
-        res.status(200).json(game)
-
+        res.status(200).json(game);
     } catch (error) {
         res.status(404).json({error: error.message});
     }
@@ -46,7 +43,7 @@ const updateVideoGame = async(req, res) => {
     const { id } = req.params;
     try {
         const updateGame = await updateGameDB(id, req.body);
-        res.status(200).json(updateGame)
+        res.status(200).json(updateGame);
     } catch (error) {
         res.status(400).json({error: error.message})
     }

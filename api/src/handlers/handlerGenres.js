@@ -3,7 +3,7 @@ const { postGenres } = require("../controllers/controllerGenres");
 
 const getGenres = async(req, res) => {
     try {
-        let genres = Genre.findAll();
+        let genres = await Genre.findAll();
         if(!genres.length) {
             genres = await postGenres();
         };

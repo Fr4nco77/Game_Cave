@@ -1,0 +1,47 @@
+.cubeGrid {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+  }
+   .cubeGrid .cube {
+    width: 33%;
+    height: 33%;
+    background-color: #333;
+    float: left;
+    animation: cubeGridScaleDelay 1.3s infinite ease-in-out;
+  }
+   .cubeGrid .cube1 {
+    animation-delay: 0.2s;
+  }
+   .cubeGrid .cube2 {
+    animation-delay: 0.3s;
+  }
+   .cubeGrid .cube3 {
+    animation-delay: 0.4s;
+  }
+   .cubeGrid .cube4 {
+    animation-delay: 0.1s;
+  }
+   .cubeGrid .cube5 {
+    animation-delay: 0.2s;
+  }
+   .cubeGrid .cube6 {
+    animation-delay: 0.3s;
+  }
+   .cubeGrid .cube7 {
+    animation-delay: 0s;
+  }
+   .cubeGrid .cube8 {
+    animation-delay: 0.1s;
+  }
+   .cubeGrid .cube9 {
+    animation-delay: 0.2s;
+  }
+   @keyframes cubeGridScaleDelay {
+    0%, 70%, 100% {
+      transform: scale3D(1, 1, 1);
+    }
+    35% {
+      transform: scale3D(0, 0, 1);
+    }
+  }

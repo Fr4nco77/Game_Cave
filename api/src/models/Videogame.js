@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        is: /^\d{2}-\d{2}-\d{2}$/
+        is: /^\d{2}-\d{2}-\d{4}$/
       }
     },
     image: {

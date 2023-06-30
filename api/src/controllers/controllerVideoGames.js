@@ -2,23 +2,28 @@ require("dotenv").config();
 const { API_KEY } = process.env;
 const axios = require("axios");
 const{ Videogame, Genre } = require("../db");
+const { Op } = require("sequelize");
 
 const getAPI = async(name) => {
-    let dataAPI;
-
-    if(name) {
-        dataAPI =  (await axios(`https://api.rawg.io/api/games?search=${name}&key=${API_KEY}`)).data.results;
-        if(!dataAPI.length) return dataAPI;
-    }else {
-        dataAPI = (await axios(`https://api.rawg.io/api/games?key=${API_KEY}`)).data.results;
+    const endpoint = name ? `https://api.rawg.io/api/games?search=${name}&` : `https://api.rawg.io/api/games?`;
+    const maxPage = 3;
+    const maxSize = 40;
+    const dataAPI = [];
+    try {
+        for (let i = 1; i <= maxPage; i++) {
+            const petition = (await axios(endpoint + `key=${API_KEY}&page_size=${maxSize}&page=${i}`)).data.results;
+            if(petition.length < maxSize) break;
+            dataAPI.push(...petition);
+        }
+    } catch (error) {
+        return dataAPI;
     }
-
+    
     const videoGamesAPI = dataAPI.map((data) => {
-        const { id, name, released, background_image, rating, platforms, genres, tags, short_screenshots } = data;
-        const platfomrsNames = platforms.map((e) => e.platform.name);
-        const genresNames = genres.map((e) => e.name);
-        const tagsNames = tags.map((e) => e.name);
-        const screenshots = short_screenshots.map((e) => e.image)
+        const { id, name, released, background_image, rating, platforms, genres, tags } = data;
+        const platfomrsNames = platforms?.map((e) => e.platform.name);
+        const genresNames = genres?.map((e) => e.name);
+        const tagsNames = tags?.map((e) => e.name);
         return {
             id,
             name,
@@ -28,50 +33,48 @@ const getAPI = async(name) => {
             platforms: platfomrsNames,
             genres: genresNames,
             tags: tagsNames,
-            short_screenshots: screenshots,
         };
     });
-
     return videoGamesAPI;
 }
 
 
 const getDB = async(name) => {
-    let dataDB;
-    if(name) {
-        dataDB = await Videogame.findAll({where: {name}, include: Genre});
-    }
-    else {
-        dataDB = await Videogame.findAll({include: Genre});    
-    }
+    let optionsDB = {include: Genre}
+    if(name) optionsDB = {where: {name: {[Op.iLike]: `%${name}%`}}, ...optionsDB}
+    
+    const dataDB = await Videogame.findAll(optionsDB);
+    if(!dataDB.length) return dataDB;
 
     const transformedData = dataDB.map((game) => ({
         ...game.toJSON(),
         genres: game.genres.map((genre) => genre.name),
     }));
-      
     return transformedData;
 }
 
 const getById = async(id) => {
+    let data;
     if(isNaN(id)) {
-        const dataDB = await Videogame.findOne({where: {id}, include: Genre});
-        if(!dataDB) throw new Error("No se encontraron coincidencias");
+        data = await Videogame.findOne({where: {id}, include: Genre});
+        if(!data) throw new Error("No se encontraron coincidencias");
 
         const transformedData = {
-            ...dataDB.toJSON(),
-            genres: dataDB.genres.map((genre) => genre.name),
+            ...data.toJSON(),
+            genres: data.genres.map((genre) => genre.name),
         };
-        
         return transformedData;
     }
-    const dataAPI = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data;
-    if('detail' in dataAPI) throw new Error("No se encontraron coincidencias");
+    try {
+        data = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data;
+    } catch (error) {
+      throw new Error("No se encontraron coincidencias");  
+    }
     
-    const { name, released, background_image, rating, platforms, genres, tags, description } = dataAPI;
-    const platformsNames = platforms.map((e) => e.platform.name);
-    const genresNames = genres.map((e) => e.name);
-    const tagsNames = tags.map((e) => e.name);
+    const { name, released, background_image, rating, platforms, genres, tags, description } = data;
+    const platformsNames = platforms?.map((e) => e.platform.name);
+    const genresNames = genres?.map((e) => e.name);
+    const tagsNames = tags?.map((e) => e.name);
     return {
         id,
         name,
@@ -113,14 +116,8 @@ const updateGameDB = async(id, data) => {
 }
 
 const getAllVideogames = async (name) => {
-    let DB, API;
-    if (name) {
-        DB = await getDB(name);
-        API = await getAPI(name);
-    } else {
-        DB = await getDB();
-        API = await getAPI();
-    }
+    const DB = await getDB(name);
+    const API = await getAPI(name);
     const allData = DB.concat(API);
 
     if (!allData.length) throw new Error("No se encontraron elementos");     
