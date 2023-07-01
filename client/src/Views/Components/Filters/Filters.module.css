@@ -1,0 +1,65 @@
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width:100%;
+    height: 100%;
+}
+
+#head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 7.5%;
+    font-size: 1vw;
+    font-weight: 500;
+    color: white;
+}
+
+#head button{
+    height: 100%;
+    font-size: 1vw;
+    color: white;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#filters {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    height: 92%;
+}
+
+#filters select{
+    background-color: rgb(18, 18, 18);
+    outline: none;
+    border: none;
+    border-top: solid 1px;
+    color: rgb(153, 153, 153);
+    font-size: 1vw;
+    width: 100%;
+    height: 9vh;
+    padding: 1vh;
+}
+
+#filters select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../../../img/nav-arrow-down.svg");
+    background-size: 1vw;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+#filters select:hover{
+    color: white;
+    border: solid 1px;
+}

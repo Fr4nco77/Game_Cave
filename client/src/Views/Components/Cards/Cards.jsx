@@ -16,15 +16,15 @@ const Cards = (props) => {
     return(
         <div id={styles.container}>
             <div id={styles.orders}>
-                <p>Mostrar:</p>
+                <p>Show:</p>
                 <select onChange={handleOption}>
-                    <option value="Todos"></option>
-                    <optgroup label="Orden Alfabetico"></optgroup>
-                        <option value="A">Ascendente</option>
-                        <option value="D">Decendente</option>
+                    <option value="Todos" disabled selected>All</option>
+                    <optgroup label="Alphabetically"></optgroup>
+                        <option value="A">A-Z</option>
+                        <option value="D">Z-A</option>
                     <optgroup label="Rating">
-                        <option value="+">Altos</option>
-                        <option value="-">Bajos</option>
+                        <option value="+">High</option>
+                        <option value="-">Low</option>
                     </optgroup>
                 </select>
             </div>

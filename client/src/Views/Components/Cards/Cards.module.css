@@ -2,9 +2,49 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 80%;
-    height: 90%;
-    gap: 3vh;
+    width: 100%;
+    height: 100%;
+}
+
+#orders {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    text-indent: 1vw;
+}
+
+#orders p{
+    font-size: 1vw;
+    font-weight: 600;
+    color: rgb(153, 153, 153);
+}
+
+#orders select{
+    background-color: rgb(18, 18, 18);
+    outline: none;
+    border: none;
+    border-radius: 0.5vh;
+    color: white;
+    font-size: 1vw;
+    width: fit-content;
+    height: 5vh;
+    margin-left: 0.5vw;
+    padding: 0.5vw;
+}
+
+#orders select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("../../../img/nav-arrow-down.svg");
+    background-size: 1vw;
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+#orders select:focus{
+    border: solid white 1px;
 }
 
 #cards {

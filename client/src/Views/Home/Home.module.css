@@ -1,16 +1,60 @@
 #container {
     display: flex;
-    flex-direction: row;
-    width:100%;
+    justify-content: center;
+    width: 100%;
     height: 90vh;
+    margin-top: 2vh;
 }
 
-#Cards {
-    width: 80%;
+#main{
+    width: 70%;
     height: 100%;
 }
 
+.cards {
+    width: 100%;
+}
+
+#paginate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5%;
+}
+
+#paginate span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5vw;
+    height: 4vh;
+    font-size: 1vw;
+    background-color: rgb(153, 153, 153);
+    border-radius: 0.5vw;
+    margin: 0 .7vw;
+}
+
+#paginate button {
+    width: 2vw;
+    height: 4vh;
+    border: none;
+    outline: none;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+#arrowLeft {
+    background: url("../../img/nav-arrow-left.svg");
+}
+
+#arrowRight {
+    background: url("../../img/nav-arrow-right.svg");
+}
+
 #filters {
-    width: 20%;
+    width: 15%;
     height: 100%;
 }

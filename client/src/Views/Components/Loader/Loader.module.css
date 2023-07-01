@@ -1,12 +1,12 @@
 .cubeGrid {
-    width: 40px;
-    height: 40px;
-    margin: 100px auto;
+    width: 10vw;
+    height: 10vw;
+    margin: 30vh auto;
   }
    .cubeGrid .cube {
     width: 33%;
     height: 33%;
-    background-color: #333;
+    background-color: #ffffff;
     float: left;
     animation: cubeGridScaleDelay 1.3s infinite ease-in-out;
   }

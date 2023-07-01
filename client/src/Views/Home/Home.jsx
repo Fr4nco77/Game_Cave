@@ -24,13 +24,15 @@ const Home = () => {
     if(!games.length || !genres.length) return <Loader/>;
     return(
         <div id={styles.container}>
-            <div id={styles.cards}>
-                <Cards data={games}/>
-            </div>
-            <div>
-                <button value="prev" onClick={handlePage}>Prev</button>
-                <span>{page + 1}</span>
-                <button value="next"  onClick={handlePage}>Next</button>
+            <div id={styles.main}>
+                <div className={styles.cards}>
+                    <Cards data={games}/>
+                </div>
+                <div id={styles.paginate}>
+                    <button value="prev" onClick={handlePage} id={styles.arrowLeft}></button>
+                    <span>{page + 1}</span>
+                    <button value="next"  onClick={handlePage} id={styles.arrowRight}></button>
+                </div>
             </div>
             <div id ={styles.filters}>
                 <Filters genres={genres}/>
