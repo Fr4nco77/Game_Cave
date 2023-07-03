@@ -12,23 +12,56 @@ const Detail = () => {
         const response = (await axios(`http://localhost:3001/videogames/${id}`)).data;
         setGame(response);
     }
+
     useEffect(()=> {
         petition();
         return setGame(undefined);
     }, [id])
 
+
     if(!game) return <Loader/>
 
     return (
-        <div>
-            <img src={game.image} alt={game.name} />
-            <h1>{game.name}</h1>
-            <p>{game.released}</p>
-            <p>{game.rating}</p>
-            <p>{game.description}</p>
-            <p>{game.platforms}</p>
-            <p>{game.genres}</p>
-            <p>{game.tags}</p>
+        <div id={styles.container}>
+            <div id={styles.title}>
+                <h1>{game.name}</h1>
+            </div>
+            <div id={styles.head}>
+                <img src={game.image} alt={game.name} />
+                <div id={styles.info}>
+                    <div id={styles.category}>
+                        <div id={styles.left}>
+                            <p>Released: {game.released}</p>
+                            <p>Rating: {game.rating}</p>
+                            <p><u>Platforms</u></p>
+                            <div id={styles.platforms}>
+                            {
+                                game.platforms.map((platform, index) => <p key={index}>{platform}</p>)
+                            }
+                            </div>
+                        </div>
+                        <div id={styles.right}>
+                            <p>Genres</p>
+                            <div id={styles.genres}>
+                                {
+                                    game.genres.map((genre, index) => <p key={index}>{genre}</p>)
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <div id={styles.bottom}>
+                        <p>Tags</p>
+                        <div id={styles.tags}>
+                                {
+                                    game.tags.map((tag) => <p>{tag}</p>)
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id={styles.description}>
+                <p dangerouslySetInnerHTML={{__html:game.description}}></p>
+            </div>
         </div>
     )
 }

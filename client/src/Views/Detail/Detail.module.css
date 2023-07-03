@@ -1,0 +1,143 @@
+#container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 80%;
+    color: white;
+    margin: 1vh auto;
+}
+
+#title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 10vh;
+    font-size: 2vw;
+}
+
+#head {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height: 65vh;
+}
+
+#head img {
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.5vw;
+}
+
+#info {
+    width:40%;
+    padding-left: 1vw;
+}
+
+#category {
+    display: flex;
+    width: 100%;
+}
+
+#left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 60%;
+    font-size: 1vw;
+}
+
+#platforms {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+}
+
+#platforms p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(42, 42, 42);
+    border-radius: 0.5vw;
+    padding: 0.5vw;
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 40%;
+    font-size: 1.2vw;
+    text-indent: 1vw;
+    border-left: solid rgb(30, 144, 255) 1px;
+}
+
+#genres {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    font-size: 1vw;
+    text-indent: 0;
+}
+
+#genres p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vw;
+    background-color: rgb(42, 42, 42);
+    border-radius: 0.5vw;
+}
+
+#bottom{
+    display: flex;
+    align-items: flex-start;
+    width:100%;
+    font-size: 1vw;
+    border-top: solid rgb(30, 144, 255) 1px;
+}
+
+#tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 16vh;
+    font-size: 0.8vw;
+    overflow: auto;
+    padding-left: 1vw;
+}
+
+#tags::-webkit-scrollbar {
+  width: 0.5vw;
+}
+
+#tags::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#tags::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 5px;
+}
+
+#tags::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+#tags p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3vw;
+    background-color: rgb(42, 42, 42);
+    border-radius: 0.5vw;
+}
+
+#description {
+    font-size: 1vw;
+    font-weight: 300;
+}

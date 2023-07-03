@@ -19,8 +19,10 @@ const Home = () => {
         if(!genres.length) dispatch(getGenres());
     }, [allGames])
 
-    const handlePage = (e) => dispatch(paginate(e.target.value))
-    
+    const handlePage = (e) => {
+        dispatch(paginate(e.target.value));
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
     if(!games.length || !genres.length) return <Loader/>;
     return(
         <div id={styles.container}>

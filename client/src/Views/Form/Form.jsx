@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { getGenres, postVideogame } from "../../Redux/Actions";
 import validation from "./validation";
 import Loader from "../Components/Loader/Loader";
+import styles from "./Form.module.css";
 
 const Form = () => {
     const navigate = useNavigate();
@@ -39,10 +40,6 @@ const Form = () => {
 
     const handleInputChange = (e) => {
         let { name, value } = e.target;
-        if(name === "released") {
-            const type = value.split("-");
-            value =  (type.reverse()).join("-");
-        };
         setData({
             ...data,
             [name]: value });
@@ -117,7 +114,7 @@ const Form = () => {
     if(!genres.length) return <Loader/>;
 
     return (
-        <div>
+        <div id={styles.container}>
             <form onSubmit={handleSubmit}>
 
                 <div>
