@@ -3,7 +3,7 @@ const date = (released) => {
     const date = new Date();
     const year = date.getFullYear();
     const dateOfReleased = released.split("-");
-    const yearReleased = parseInt(dateOfReleased[2]);
+    const yearReleased = parseInt(dateOfReleased[0]);
 
     if(released.trim() === "") return "Campo Obligatorio";
     if(yearReleased > year || yearReleased < 1958) return "La fecha no es correcta";

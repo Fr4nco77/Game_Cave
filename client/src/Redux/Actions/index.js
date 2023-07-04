@@ -1,4 +1,4 @@
-import { GET_VIDEOGAMES, GET_GENRES, FILTER_BY_GENRE, FILTER_BY_ORIGIN, REMOVE_FILTER, ORDER_BY_NAME, ORDER_BY_RATING, PAGINATE, POST_VIDEOGAME, PUT_VIDEOGAME, DELETE_VIDEOGAME, REMOVE_VIDEOGAMES} from "./actionsType";
+import { GET_VIDEOGAMES, GET_GENRES, FILTER_BY_GENRE, FILTER_BY_ORIGIN, REMOVE_FILTER, ORDER_BY_NAME, ORDER_BY_RATING, PAGINATE, POST_VIDEOGAME, PUT_VIDEOGAME, DELETE_VIDEOGAME, REMOVE_VIDEOGAMES, FILTER_BY_PLATFORM, FILTER_BY_TAGS} from "./actionsType";
 import axios from "axios";
 
 export const getVideogames = (name) => {
@@ -99,6 +99,24 @@ export const filterByOrigin = (origin) => {
         dispatch({
             type: FILTER_BY_ORIGIN,
             payload: origin
+        })
+    }
+}
+
+export const filterByPlatform = (platform) => {
+    return function(dispatch) {
+        dispatch({
+            type: FILTER_BY_PLATFORM,
+            payload: platform
+        })
+    }
+}
+
+export const filterByTag = (tag) => {
+    return function(dispatch) {
+        dispatch({
+            type: FILTER_BY_TAGS,
+            payload: tag
         })
     }
 }

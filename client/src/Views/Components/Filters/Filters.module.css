@@ -63,3 +63,43 @@
     color: white;
     border: solid 1px;
 }
+
+#tags {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-top: solid 1px;
+    color: rgb(153, 153, 153);
+    font-size: 1vw;
+    width: 100%;
+    height: 9vh;
+    padding-top: 2vh;
+}
+
+#tags label {
+    text-indent: 0.5vw;
+}
+
+#submit {
+    margin-top: 2.5vh;
+}
+
+#submit input {
+    border-radius: 0.2vw;
+    border: none;
+    width: 9vw;
+    height: 2vh;
+    font-size: 0.8vw;
+}
+
+#submit button {
+    width: 4vw;
+    height: 3vh;
+    margin-left: 1vw;
+    background-color: rgb(153, 153, 153);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1vw;
+}
