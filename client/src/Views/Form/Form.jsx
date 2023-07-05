@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getGenres, getVideogames, postVideogame } from "../../Redux/Actions";
+import { getGenres, getVideogames, postVideogame, removeFilters, removeVideogames } from "../../Redux/Actions";
 import validation from "./validation";
 import Loader from "../Components/Loader/Loader";
 import styles from "./Form.module.css";
@@ -24,22 +24,18 @@ const Form = () => {
         name: "",
         released: "",
         rating: 0,
+        image: "",
         platforms: [],
         tags: [],
         description: "",
         // short_screenshots: [],
         genres: [],
     });
-    const [image, setImage] = useState("");
 
     useEffect(()=> {
         if(!games.length) dispatch(getVideogames());
         if(!genres.length) dispatch(getGenres());
     }, []);
-
-    const handleImage = (e) => {
-        setImage(e.target.value);
-    };
 
     const handleInputChange = (e) => {
         let { name, value } = e.target;
@@ -103,15 +99,10 @@ const Form = () => {
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        if(image.trim() !== "") {
-            setData({
-                ...data,
-                image: image
-            });
-        }
+        dispatch(removeVideogames());
+        dispatch(removeFilters());
         dispatch(postVideogame(data));
         navigate("/home");
-        //console.log(data);
     };
     
     if(!genres.length || !platforms.length) return <Loader/>;
@@ -176,9 +167,9 @@ const Form = () => {
                     <div id={styles.right}>
                         <div id={styles.image}>
                             <label htmlFor="image-input">Imagen:</label>
-                            <input type="text" id="image-input" onChange={handleImage} />
+                            <input type="text" id="image-input" name="image" onChange={handleInputChange} />
                         </div>
-                        <img src={image} alt="Vista_previa" />
+                        <img src={data.image} alt="Vista_previa" />
                         {/* <label htmlFor="screenshot-input">Screenshots:</label>
                         <input type="text" id="screenshot-input" name="screenshot" />
                         <button type="button" onClick={handleScreenshotSubmit}>Agregar</button> */}

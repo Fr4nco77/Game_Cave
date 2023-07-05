@@ -31,7 +31,7 @@
 #filters {
     display: flex;
     flex-direction: column;
-    justify-content: start;
+    justify-content: flex-start;
     align-items: center;
     width: 100%;
     height: 92%;
@@ -87,7 +87,6 @@
 
 #submit input {
     border-radius: 0.2vw;
-    border: none;
     width: 9vw;
     height: 2vh;
     font-size: 0.8vw;
@@ -98,8 +97,9 @@
     height: 3vh;
     margin-left: 1vw;
     background-color: rgb(153, 153, 153);
-    color: white;
+    color: rgb(42, 42, 42);
     border: none;
+    border-radius: 0.5vw;
     cursor: pointer;
     font-size: 1vw;
 }

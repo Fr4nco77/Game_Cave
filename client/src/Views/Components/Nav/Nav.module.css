@@ -20,6 +20,17 @@
     text-shadow: 1px 1px 1px rgba(0,0,0,.004);
 }
 
+.buttons h1 {
+    font-size: 2vw;
+}
+
+.buttons span {
+    background-color: rgb(153, 153, 153);
+    color: rgb(18, 18, 18);
+    border-radius: .5vw;
+    padding: 0 .2vw;
+}
+
 .buttons ul {
     display: flex;
     align-items: center;

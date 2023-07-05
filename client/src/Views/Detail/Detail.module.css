@@ -9,11 +9,23 @@
 
 #title {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 10vh;
     font-size: 2vw;
+}
+
+#title button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5vw;
+    border-radius: 1vw;
+    background-color: red;
+    font-size: 1vw;
+    font-weight: 500;
+    color: white;
 }
 
 #head {
@@ -69,7 +81,7 @@
     flex-direction: column;
     align-items: flex-start;
     width: 40%;
-    font-size: 1.2vw;
+    font-size: 1vw;
     text-indent: 1vw;
     border-left: solid rgb(30, 144, 255) 1px;
 }

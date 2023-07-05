@@ -40,6 +40,7 @@ export const getGenres = () => {
 }
 
 export const postVideogame = (data) => {
+    if(data.image.trim() === "") delete data.image;
     return async function(dispatch) {
         try {
             const response = (await axios.post("http://localhost:3001/videogames", data)).data;
@@ -54,7 +55,7 @@ export const postVideogame = (data) => {
     }
 }
 
-export const putVideogames = (id, data) => {
+export const putVideogame = (id, data) => {
     return async function(dispatch) {
         try {
             const response = (await axios.put(`http://localhost:3001/videogames/${id}`, data)).data;
@@ -72,7 +73,7 @@ export const putVideogames = (id, data) => {
 export const deleteVideogame = (id) => {
     return async function(dispatch) {
         try {
-            const response = (await axios.delete(`https://localhost:3001/videogames/${id}`)).data;
+            const response = (await axios.delete(`http://localhost:3001/videogames/${id}`)).data;
             alert(response.status);
             dispatch({
                 type: DELETE_VIDEOGAME,
@@ -80,6 +81,7 @@ export const deleteVideogame = (id) => {
             });
         } catch (error) {
             alert(error.message);
+            console.log(error)
         }
     }
 }

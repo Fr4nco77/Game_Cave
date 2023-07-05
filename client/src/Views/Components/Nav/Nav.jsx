@@ -38,7 +38,7 @@ const Nav = () => {
     return (
         <div className={styles.container}>
             <div className={styles.buttons}>
-                <Link to="/home"  style={{ textDecoration: 'none', color: 'inherit' }}><img src="" alt="Game Cav"/></Link>
+                <Link to="/home"  style={{ textDecoration: 'none', color: 'inherit' }}><h1>Game<span>Hub</span></h1></Link>
                 <ul>
                     <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/home" ? styles.active : ""}>Home</li></Link>
                     <Link to="/add_game" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/add_game" ? styles.active : ""}>Add Game</li></Link>
