@@ -13,8 +13,13 @@ const Detail = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const petition = async() => {
-        const response = (await axios(`http://localhost:3001/videogames/${id}`)).data;
-        setGame(response);
+        try {
+            const response = (await axios(`http://localhost:3001/videogames/${id}`)).data;
+            setGame(response);
+        } catch (error) {
+            navigate("/home");
+            alert(error.response.data.error);
+        }
     }
 
     useEffect(()=> {

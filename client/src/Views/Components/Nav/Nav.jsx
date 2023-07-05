@@ -15,13 +15,11 @@ const Nav = () => {
     };
 
     const handleSubmit = () => {
-        const search = gameName.trim();
-        if(search === "") alert("sabes que los espacios vacios no se puden buscar, ya existen en tu vida")
+        if(gameName.trim() === "") alert("Why would someone search for nothing?")
         else {
             // navigate(`/search?results=${encodeURIComponent(search)}`);
             dispatch(getVideogames(gameName));
-            navigate("/home");
-            
+            navigate("/home");  
         }
     };
 

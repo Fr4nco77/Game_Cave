@@ -119,7 +119,7 @@ const getAllVideogames = async (name) => {
     const DB = await getDB(name);
     const API = await getAPI(name);
     const allData = DB.concat(API);
-
+    
     if (!allData.length) throw new Error("No video games were found");     
     return allData;
 };

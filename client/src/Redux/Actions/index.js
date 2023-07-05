@@ -6,12 +6,13 @@ export const getVideogames = (name) => {
         try {
             const endpoint = name ? `http://localhost:3001/videogames?name=${name}` : "http://localhost:3001/videogames";
             const response = (await axios(endpoint)).data;
+
             dispatch({
                 type: GET_VIDEOGAMES,
                 payload: response
             });
         } catch (error) {
-            alert(error.message);
+            alert(error.response.data.error);
         }
     }
 }
