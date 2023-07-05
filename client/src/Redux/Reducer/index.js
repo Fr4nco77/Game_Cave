@@ -47,7 +47,7 @@ const reducer = (state = initialState, { type, payload }) => {
             const filteredByGenre = toFilterByGenre.filter((game) => game.genres?.includes(payload));
             
             if(!filteredByGenre.length) {
-                alert("Temo que ese ultimo filtro no tuvo ningun resultado, te invito a aplicar otro");
+                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
                 return {
                     ...state
                 }
@@ -66,7 +66,7 @@ const reducer = (state = initialState, { type, payload }) => {
             const filterByOrigin = toFilterByOrigin.filter((game) => typeof game.id === originType);
             
             if(!filterByOrigin.length) {
-                alert("Temo que ese ultimo filtro no tuvo ningun resultado, te invito a aplicar otro");
+                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
                 return {
                     ...state
                 }
@@ -84,7 +84,7 @@ const reducer = (state = initialState, { type, payload }) => {
             const filteredByPlatform = toFilterByPlatform.filter((game) => game.platforms?.includes(payload));
             
             if(!filteredByPlatform.length) {
-                alert("Temo que ese ultimo filtro no tuvo ningun resultado, te invito a aplicar otro");
+                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
                 return {
                     ...state
                 }
@@ -102,7 +102,7 @@ const reducer = (state = initialState, { type, payload }) => {
             const filteredByTags = toFilterByTags.filter((game) => game.tags?.includes(payload))
 
             if(!filteredByTags.length) {
-                alert("Temo que ese ultimo filtro no tuvo ningun resultado, te invito a aplicar otro");
+                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
                 return {
                     ...state
                 }

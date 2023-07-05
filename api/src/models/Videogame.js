@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
       }
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       defaultValue: "https://cdn.pixabay.com/photo/2023/02/03/05/11/youtube-background-7764170_1280.jpg",
     },
     rating: {

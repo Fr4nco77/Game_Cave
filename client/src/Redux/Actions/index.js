@@ -40,7 +40,6 @@ export const getGenres = () => {
 }
 
 export const postVideogame = (data) => {
-    if(data.image.trim() === "") delete data.image;
     return async function(dispatch) {
         try {
             const response = (await axios.post("http://localhost:3001/videogames", data)).data;

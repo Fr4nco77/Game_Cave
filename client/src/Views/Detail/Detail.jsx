@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { deleteVideogame, putVideogame, removeFilters, removeVideogames } from "../../Redux/Actions";
 import axios from "axios";
 import Loader from "../Components/Loader/Loader";
+import Rating from "../Components/Rating/Rating";
 import styles from "./Detail.module.css";
 
 const Detail = () => {
@@ -48,7 +49,7 @@ const Detail = () => {
                     <div id={styles.category}>
                         <div id={styles.left}>
                             <p>Released: {game.released}</p>
-                            <p>Rating: {game.rating}</p>
+                            <p id={styles.rating}>Rating: <Rating score={game.rating}/></p>
                             <p>Platforms</p>
                             <div id={styles.platforms}>
                             {

@@ -42,7 +42,7 @@ const Nav = () => {
                 <ul>
                     <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/home" ? styles.active : ""}>Home</li></Link>
                     <Link to="/add_game" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/add_game" ? styles.active : ""}>Add Game</li></Link>
-                    <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/about" ? styles.active : ""}>About</li></Link>
+                    {/* <Link to="/about" style={{ textDecoration: 'none', color: 'inherit' }}><li className={location.pathname === "/about" ? styles.active : ""}>About</li></Link> */}
                 </ul>
             </div>
             <div className={styles.searchBar}>

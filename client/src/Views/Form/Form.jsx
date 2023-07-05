@@ -13,12 +13,12 @@ const Form = () => {
     const platforms = useSelector((state) => state.platforms);
     const games = useSelector((state) => state.videoGames);
     const [ errors, setErrors] = useState({
-        name: "Campo Obligatorio",
-        released: "Campo Obligatorio",
-        rating: "Campo Obligatorio",
-        platforms: "Selecciona al menos uno",
-        genres: "Selecciona al menos uno",
-        description: "Campo Obligatorio",
+        name: "Required",
+        released: "Required",
+        rating: "Required",
+        platforms: "Select at least one",
+        genres: "Select at least one",
+        description: "Required",
     });
     const [ data, setData ] = useState({
         name: "",
@@ -60,6 +60,8 @@ const Form = () => {
     
     const handleTagSubmit = (e) => {
         e.preventDefault();
+        if(data.image.trim() === "") delete data.image;
+
         const tagInput = document.getElementById("tag-input");
         if (tagInput.value !== "") {
             setData({ ...data, tags: [...data.tags, tagInput.value] });
@@ -113,12 +115,12 @@ const Form = () => {
                 <div id={styles.top}>
                     <div id={styles.left}>
                         <div id={styles.data}>
-                            <label htmlFor="name-input">Nombre:</label>
+                            <label htmlFor="name-input">Name:</label>
                             <div id={styles.name} className={styles.inputs}>
                                 <input type="text" id="name-input" name="name" onChange={handleInputChange} />
                                 <span>{errors.name}</span>
                             </div>
-                            <label htmlFor="released-input">Fecha de lanzamiento:</label>
+                            <label htmlFor="released-input">Released:</label>
                             <div className={styles.inputs} id={styles.date}>
                                 <input type="date" id="released-input" name="released" onChange={handleInputChange} />
                                 <span>{errors.released}</span>
@@ -131,7 +133,7 @@ const Form = () => {
                         </div>
                         <div className={styles.options}>
                             <div>
-                               <label>Plataformas:</label>
+                               <label>Platforms:</label>
                                <span>{errors.platforms}</span>
                             </div> 
                             <div className={styles.checkBox}>
@@ -148,7 +150,7 @@ const Form = () => {
                         </div>
                         <div className={styles.options}>
                             <div>
-                                <label>Géneros:</label>
+                                <label>Genres:</label>
                                 <span>{errors.genres}</span>
                             </div>
                             <div className={styles.checkBox}>
@@ -166,10 +168,10 @@ const Form = () => {
                     </div>
                     <div id={styles.right}>
                         <div id={styles.image}>
-                            <label htmlFor="image-input">Imagen:</label>
+                            <label htmlFor="image-input">Image:</label>
                             <input type="text" id="image-input" name="image" onChange={handleInputChange} />
                         </div>
-                        <img src={data.image} alt="Vista_previa" />
+                        <img src={data.image} alt="If you are seeing this message, it means that the image format is not supported" />
                         {/* <label htmlFor="screenshot-input">Screenshots:</label>
                         <input type="text" id="screenshot-input" name="screenshot" />
                         <button type="button" onClick={handleScreenshotSubmit}>Agregar</button> */}
@@ -177,7 +179,7 @@ const Form = () => {
                             <label htmlFor="tag-input">Tags:</label>
                             <div id={styles.tagsSubmit}>
                                 <input type="text" id="tag-input" name="tag" />
-                                <button type="submit" onClick={handleTagSubmit}>Agregar</button>
+                                <button type="submit" onClick={handleTagSubmit}>Add</button>
                             </div>
                             <div id={styles.showTags}>
                                 {data.tags.map((tag, index) => (
@@ -191,12 +193,12 @@ const Form = () => {
                 </div>
                 <div id={styles.bottom}>
                     <div>
-                        <label htmlFor="description-input">Descripción:</label>
+                        <label htmlFor="description-input">Description:</label>
                         <span>{errors.description}</span>
                     </div>
                     <textarea id="description-input" name="description" onChange={handleInputChange}></textarea>    
                 </div>
-                <button  id={styles.submit} type="submit" disabled={disabled()}>Guardar</button>
+                <button  id={styles.submit} type="submit" disabled={disabled()}>Create video game</button>
         </form>
     </div>
     )

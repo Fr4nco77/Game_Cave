@@ -60,6 +60,13 @@
     font-size: 1vw;
 }
 
+#rating {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
 #platforms {
     display: flex;
     flex-wrap: wrap;

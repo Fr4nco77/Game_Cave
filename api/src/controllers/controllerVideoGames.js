@@ -57,7 +57,7 @@ const getById = async(id) => {
     let data;
     if(isNaN(id)) {
         data = await Videogame.findOne({where: {id}, include: Genre});
-        if(!data) throw new Error("No se encontraron coincidencias");
+        if(!data) throw new Error("No matches found");
 
         const transformedData = {
             ...data.toJSON(),
@@ -68,7 +68,7 @@ const getById = async(id) => {
     try {
         data = (await axios(`https://api.rawg.io/api/games/${id}?key=${API_KEY}`)).data;
     } catch (error) {
-      throw new Error("No se encontraron coincidencias");  
+      throw new Error("No matches found");  
     }
     
     const { name, released, background_image, rating, platforms, genres, tags, description } = data;
@@ -97,21 +97,21 @@ const postDB = async(newGameData) => {
     await newGame.addGenres(foundGenres);
 
     return {
-        status: "Creado con exito"
+        status: "Created successfully"
     }
 }
 
 const deleteGameDB = async(id) => {
     await Videogame.destroy({where: {id}});
     return {
-        status: "Eliminado con exito"
+        status: "Deleted successfully"
     }
 }
 
 const updateGameDB = async(id, data) => {
     await Videogame.update(data, { where: { id } });
     return {
-        status: "Actualizado con exito"
+        status: "Updated successfully"
     }
 }
 
@@ -120,7 +120,7 @@ const getAllVideogames = async (name) => {
     const API = await getAPI(name);
     const allData = DB.concat(API);
 
-    if (!allData.length) throw new Error("No se encontraron elementos");     
+    if (!allData.length) throw new Error("No video games were found");     
     return allData;
 };
 

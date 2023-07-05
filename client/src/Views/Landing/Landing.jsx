@@ -26,8 +26,8 @@ const Landing = () => {
             <div id={styles.landing}>
                 <div id={styles.left}>
                     <h1>Game<span>Hub</span></h1>
-                    <p>¡Bienvenido a GameHub, tu destino definitivo para todo lo relacionado con videojuegos! Aquí encontrarás una amplia gama de información y características emocionantes para satisfacer tu pasión por los videojuegos. </p>
-                    <p>Sumérgete en el emocionante mundo de GameHub, donde encontrarás información detallada, opciones de filtrado personalizadas y la oportunidad de crear tus propios videojuegos. ¡No pierdas más tiempo y comienza tu aventura en GameHub ahora mismo! </p>
+                    <p>¡Welcome to GameHub, your ultimate destination for everything related to video games!</p>
+                    <p>Immerse yourself in the exciting world of GameHub, where you will find detailed information, personalized filtering options, and the opportunity to create your own video games. Don't waste any more time and start your adventure on GameHub right now!</p>
                     <button onClick={()=>navigate("/home")}>Empieza Aquí</button>
                 </div>
                 <div id={styles.right}>

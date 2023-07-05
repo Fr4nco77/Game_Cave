@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Rating from "../Rating/Rating";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
@@ -12,7 +13,7 @@ const Card = (props) => {
                 <div id={styles.info}>
                     <div id={styles.text}>
                         <p id={styles.title}>{name}</p>
-                        <p id={styles.rating}>Rating: {rating}/5</p>
+                        <p id={styles.rating}>Rating: <Rating score={rating}/></p>
                     </div>
                     <ul id={styles.genres}>
                         {
