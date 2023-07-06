@@ -16,7 +16,7 @@ const Landing = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentImage((prevImage) => (prevImage + 1) % images.length);
-        }, 8000);
+        }, 10000);
 
         return () => clearInterval(interval);
     }, []);
@@ -31,7 +31,7 @@ const Landing = () => {
                     <button onClick={()=>navigate("/home")}>Empieza Aquí</button>
                 </div>
                 <div id={styles.right}>
-                    <img src={images[currentImage]} alt="Imagen del carrusel" />
+                    <img src={images[currentImage]} alt="carrusel" />
                 </div>
             </div>
         </div>

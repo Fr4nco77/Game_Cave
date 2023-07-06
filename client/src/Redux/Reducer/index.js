@@ -12,6 +12,25 @@ const initialState = {
 const reducer = (state = initialState, { type, payload }) => {
     const itemsPerPage = 15;
 
+    const applyFilter = (filterProperty) => {
+        const toFilter = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
+        const filtered = toFilter.filter((game) => game[filterProperty]?.includes(payload));
+      
+        if (!filtered.length) {
+          alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
+          return {
+            ...state
+          };
+        };
+      
+        return {
+          ...state,
+          videoGamesFiltered: filtered,
+          paginate: [...filtered].splice(0, itemsPerPage),
+          currentPage: 0
+        };
+    };
+      
     switch (type) {
         case GET_VIDEOGAMES:
             const platforms = new Set([...state.platforms]);
@@ -41,23 +60,16 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 genres: payload
             }
-
+        
         case FILTER_BY_GENRE:
-            const toFilterByGenre = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames
-            const filteredByGenre = toFilterByGenre.filter((game) => game.genres?.includes(payload));
+            return applyFilter("genres");
+    
+        case FILTER_BY_PLATFORM:
+            return applyFilter("platforms");
+    
+        case FILTER_BY_TAGS:
+            return applyFilter("tags");
             
-            if(!filteredByGenre.length) {
-                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
-                return {
-                    ...state
-                }
-            }
-            return {
-                ...state,
-                videoGamesFiltered: filteredByGenre,
-                paginate: [...filteredByGenre].splice(0, itemsPerPage),
-                currentPage: 0
-            }
             
         case FILTER_BY_ORIGIN:
             const toFilterByOrigin = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
@@ -78,42 +90,6 @@ const reducer = (state = initialState, { type, payload }) => {
                 paginate: [...filterByOrigin].splice(0, itemsPerPage),
                 currentPage: 0
             };
-
-        case FILTER_BY_PLATFORM:
-            const toFilterByPlatform = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames; 
-            const filteredByPlatform = toFilterByPlatform.filter((game) => game.platforms?.includes(payload));
-            
-            if(!filteredByPlatform.length) {
-                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
-                return {
-                    ...state
-                }
-            }
-
-            return {
-                ...state,
-                videoGamesFiltered: filteredByPlatform,
-                paginate: [...filteredByPlatform].splice(0, itemsPerPage),
-                currentPage: 0
-            }
-
-        case FILTER_BY_TAGS:
-            const toFilterByTags = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
-            const filteredByTags = toFilterByTags.filter((game) => game.tags?.includes(payload))
-
-            if(!filteredByTags.length) {
-                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
-                return {
-                    ...state
-                }
-            }
-
-            return {
-                ...state,
-                videoGamesFiltered: filteredByTags,
-                paginate: [...filteredByTags].splice(0, itemsPerPage),
-                currentPage: 0
-            }
 
         case REMOVE_FILTER:
             return {
