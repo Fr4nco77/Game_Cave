@@ -14,8 +14,15 @@ const reducer = (state = initialState, { type, payload }) => {
 
     const applyFilter = (filterProperty) => {
         const toFilter = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
-        const filtered = toFilter.filter((game) => game[filterProperty]?.includes(payload));
-      
+        let filtered;
+        if(filterProperty === "origin") {
+            const originType = payload === "API" ? "number" : "string";
+            filtered = toFilter.filter((game) => typeof game.id === originType);
+        }
+        else {
+            filtered = toFilter.filter((game) => game[filterProperty]?.includes(payload));
+        }
+        
         if (!filtered.length) {
           alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
           return {
@@ -70,26 +77,27 @@ const reducer = (state = initialState, { type, payload }) => {
         case FILTER_BY_TAGS:
             return applyFilter("tags");
             
-            
         case FILTER_BY_ORIGIN:
-            const toFilterByOrigin = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
-            let originType = payload === "API" ? "number" : "string";
+            return applyFilter("origin");
+        // case FILTER_BY_ORIGIN:
+        //     const toFilterByOrigin = state.videoGamesFiltered.length ? state.videoGamesFiltered : state.videoGames;
+        //     let originType = payload === "API" ? "number" : "string";
 
-            const filterByOrigin = toFilterByOrigin.filter((game) => typeof game.id === originType);
+        //     const filterByOrigin = toFilterByOrigin.filter((game) => typeof game.id === originType);
             
-            if(!filterByOrigin.length) {
-                alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
-                return {
-                    ...state
-                }
-            }
+        //     if(!filterByOrigin.length) {
+        //         alert("I'm afraid that the last filter didn't yield any results. I invite you to apply another one");
+        //         return {
+        //             ...state
+        //         }
+        //     }
 
-            return {
-                ...state,
-                videoGamesFiltered: filterByOrigin,
-                paginate: [...filterByOrigin].splice(0, itemsPerPage),
-                currentPage: 0
-            };
+        //     return {
+        //         ...state,
+        //         videoGamesFiltered: filterByOrigin,
+        //         paginate: [...filterByOrigin].splice(0, itemsPerPage),
+        //         currentPage: 0
+        //     };
 
         case REMOVE_FILTER:
             return {
